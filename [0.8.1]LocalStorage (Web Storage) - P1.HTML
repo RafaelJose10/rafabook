@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> [0.8.1]LocalStorage (Web Storage) - P1.HTML </title>
+    <style></style>
+    <script>
+        const inicia = () => {
+            var email = window.location.hash.split(/#/);
+            email = email[1];
+
+            conta = {
+                nome1: localStorage.getItem("nome1 " + email),
+                nome2: localStorage.getItem("nome2 " + email),
+                idade: localStorage.getItem("idade " + email),
+            };
+
+            var h2 = window.document.getElementById("h2");
+            h2.textContent = "Seja Bem Vindo " + conta.nome1 + " " + conta.nome2;
+
+        };
+        window.addEventListener("load", inicia);
+    </script>
+</head>
+
+<body>
+    <h1> RafaBook </h1>
+    <h2 id="h2"> Seja Bem Vindo Aguem... </h2>
+</body>
+
+</html>

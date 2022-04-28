@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> [0.8]LocalStorage (Web Storage) - P1.HTML </title>
+    <style>
+        div.caixa {
+            text-align: center;
+            width: 300px;
+            height: 350px;
+            margin-top: 25px;
+            border: solid 2px black;
+            border-radius: 20px;
+            display: none;
+        }
+        
+        div.caixa_entrar {
+            height: 200px;
+            width: 300px;
+            text-align: center;
+            border: solid 2px black;
+            border-radius: 10px;
+            margin-top: 25px;
+            display: none;
+        }
+    </style>
+    <script>
+        const criar_conta = () => {
+            var caixa = window.document.getElementsByClassName("caixa")[0];
+            caixa.style.display = "block";
+
+            var caixa2 = window.document.querySelector(".caixa_entrar");
+            caixa2.style.display = "none";
+        };
+
+
+        const confirmar = () => {
+            var pri_nome = window.document.querySelector("#p_nome");
+            var seg_nome = window.document.querySelector("#s_nome");
+            var idade = window.document.querySelector("#idade");
+            var email = window.document.getElementById("i_email");
+            var senha = window.document.querySelectorAll("#i_password")[0];
+
+
+            var conta = {
+                "primeiro_nome": pri_nome.value,
+                "segundo_nome": seg_nome.value,
+                "idade": idade.value,
+                "email": email.value,
+                "senha": senha.value
+            };
+
+            localStorage.setItem(conta.email, conta.senha);
+            localStorage.setItem("nome1 " + conta.email, conta.primeiro_nome);
+            localStorage.setItem("nome2 " + conta.email, conta.segundo_nome);
+            localStorage.setItem("idade " + conta.email, conta.idade);
+
+
+
+            var caixa = window.document.getElementsByClassName("caixa")[0];
+            caixa.style.display = "none";
+
+
+        };
+        const click_entrar = () => {
+            let caixa1 = window.document.querySelectorAll('.caixa')[0];
+            caixa1.style.display = "none";
+            let caixa = window.document.querySelectorAll('.caixa_entrar')[0];
+            caixa.style.display = "block";
+        };
+        const entrar = () => {
+            var ent_email = window.document.getElementById("ent_email");
+            var ent_password = window.document.getElementById("ent_password");
+
+            var senha = localStorage.getItem(ent_email.value);
+
+            if (senha == ent_password.value) {
+                let rafaBool = window.open("[0.8.1]LocalStorage (Web Storage) - P1.HTML#" + ent_email.value, "_self", "rafa");
+                alert("Pode Entrar");
+            } else {
+                window.alert("Email ou Senha Invalido");
+            };
+        };
+    </script>
+</head>
+
+<body>
+    <h1> RafaBook </h1>
+
+    <input type="button" value="Criar Conta" onclick="criar_conta()">
+    <input type="button" value="Entrar" onclick="click_entrar()">
+
+
+    <div class="caixa">
+        <p> Cria Conta </p>
+
+        <label for=""> Primeiro Nome </label><br>
+        <input type="text" name="p_nome" id="p_nome"><br>
+
+        <label for=""> Segundo Nome</label><br>
+        <input type="text" name="s_nome" id="s_nome"><br>
+
+        <label for="">Idade</label><br>
+        <input type="number" name="idade" id="idade"><br><br>
+        <hr>
+
+
+        <label> Email </label><br>
+        <input type="email" name="n_email" id="i_email">
+        <br>
+        <label> Senha </label><br>
+        <input type="password" name="n_password" id="i_password"><br><br>
+
+        <button onclick="confirmar()"> confirmar dados </button>
+    </div>
+
+
+
+    <div class="caixa_entrar">
+
+        <p> Entrar </p>
+
+        <label for=""> Email </label><br>
+        <input type="email" name="ent_email" id="ent_email"><br><br>
+
+        <label for=""> Senha </label><br>
+        <input type="password" name="ent_password" id="ent_password"><br><br>
+
+        <button onclick="entrar()"> Entrar  </button>
+    </div>
+
+</body>
+
+</html>
